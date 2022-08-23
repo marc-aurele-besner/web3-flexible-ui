@@ -1,0 +1,25 @@
+{
+  "name": "web3-flexible-ui",
+  "version": "0.0.1",
+  "description": "Flexible ReactJS UI to interact with your smart contracts locally or on-chain",
+  "main": "src/index",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marc-aurele-besner/web3-flexible-ui.git"
+  },
+  "keywords": [
+    "web3",
+    "ethersjs",
+    "react",
+    "ui"
+  ],
+  "author": "Marc-Aurele Besner <82244926+marc-aurele-besner@users.noreply.github.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marc-aurele-besner/web3-flexible-ui/issues"
+  },
+  "homepage": "https://github.com/marc-aurele-besner/web3-flexible-ui#readme"
+}
