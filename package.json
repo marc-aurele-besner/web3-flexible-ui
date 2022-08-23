@@ -4,7 +4,10 @@
   "description": "Flexible ReactJS UI to interact with your smart contracts locally or on-chain",
   "main": "src/index",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
@@ -21,5 +24,39 @@
   "bugs": {
     "url": "https://github.com/marc-aurele-besner/web3-flexible-ui/issues"
   },
-  "homepage": "https://github.com/marc-aurele-besner/web3-flexible-ui#readme"
+  "homepage": "https://github.com/marc-aurele-besner/web3-flexible-ui#readme",
+  "devDependencies": {
+    "@types/node": "^18.7.11",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@types/styled-components": "^5.1.26",
+    "babel-plugin-preval": "^5.1.0",
+    "eslint": "^8.22.0",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "ethers": "^5.7.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "^5.0.1",
+    "styled-components": "^5.3.5",
+    "zustand": "^4.1.1"
+  }
 }
