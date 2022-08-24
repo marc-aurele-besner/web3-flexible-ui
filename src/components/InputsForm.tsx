@@ -2,7 +2,7 @@
 import React from 'react'
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
+// import ButtonGroup from '@mui/material/ButtonGroup';
 import { ethers } from 'ethers';
 import { 
     StyledInput
@@ -20,10 +20,13 @@ const StyledButton = styled(Button)`
 
 interface InputsForm {
     contractAddress: string
+    // eslint-disable-next-line
     contractDetail: any[]
     functionSelected: string
     setFunctionSelected: (functionSelected: string) => void
+    // eslint-disable-next-line
     callArguments: any
+    // eslint-disable-next-line
     setCallArguments: (callArguments: any) => void
 }
 
@@ -61,7 +64,9 @@ const InputsForm: React.FC<InputsForm> = ({
     const wallet = useAccounts(state => state.wallet)
     const walletType = useAccounts(state => state.walletType)
     const randomProvider = useAccounts(state => state.randomProvider)
+    // eslint-disable-next-line
     const contractDetailFunctions = contractDetail.length > 0 ? contractDetail[0].abi.length >0 && contractDetail[0].abi.filter((abiRow: any) => abiRow.type == "function") : []
+    // eslint-disable-next-line
     const specificFunctionDetail = contractDetailFunctions.length > 0 ? contractDetailFunctions.filter((functionAbi: any) => functionAbi.name === functionSelected) : []
 
     const provider = walletType == "Random" ? randomProvider : new ethers.providers.Web3Provider(window.ethereum, 'any')
@@ -69,6 +74,7 @@ const InputsForm: React.FC<InputsForm> = ({
         <>
         <h2>Inputs:</h2>
         {/* <form id="form" onSubmit={handleSubmit}> */}
+            {/* eslint-disable-next-line */}
             {specificFunctionDetail.length > 0 && specificFunctionDetail[0].inputs.map((input: any) => {
             return (
                 <div key={input.name}>

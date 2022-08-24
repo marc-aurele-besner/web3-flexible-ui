@@ -9,6 +9,7 @@ interface IControlsState {
   functionInputNeeded: boolean
   action: string
   leftBarOpen: boolean
+  // eslint-disable-next-line
   callArguments: any
   setViewType: (viewType: string) => void
   setContractSelected: (contractSelected: string | null) => void
@@ -18,6 +19,7 @@ interface IControlsState {
   setFunctionInputNeeded: (functionInputNeeded: boolean) => void
   setAction: (action: string) => void
   setLeftBarOpen: (leftBarOpen: boolean) => void
+  // eslint-disable-next-line
   setCallArguments: (callArguments: any) => void
 }
 
@@ -39,6 +41,7 @@ const useControls = create<IControlsState>(set => ({
   setFunctionInputNeeded: (functionInputNeeded: boolean) => set(() => ({ functionInputNeeded })),
   setAction: (action: string) => set(() => ({ action })),
   setLeftBarOpen: (leftBarOpen: boolean) => set(() => ({ leftBarOpen })),
+  // eslint-disable-next-line
   setCallArguments: (callArguments: any) => set(() => ({ callArguments })),
 }))
 

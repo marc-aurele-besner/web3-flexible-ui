@@ -45,8 +45,9 @@ const App: React.FC = () => {
   const action = useControls(state => state.action)
   const setAction = useControls(state => state.setAction)
 
+  // eslint-disable-next-line
   const contractDetail = contractSelected !== "" ? contractsList.contractsAbis.filter((contractAbi: IContractsAbis) => contractAbi.contractName === contractSelected) : []
-  const contractAddress = ''
+  // const contractAddress = ''
 
   return (
     <ThemeProvider theme={uiTheme}>
@@ -57,7 +58,7 @@ const App: React.FC = () => {
         {viewType === ""  && <>
           {contractSelected !== "" && action === "" ? <>
               <FunctionsAndEventsList 
-                contractAddress={contractAddress}
+                // contractAddress={contractAddress}
                 contractDetail={contractDetail}
               />
               <RightPanel 
