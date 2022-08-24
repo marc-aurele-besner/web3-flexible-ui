@@ -9,7 +9,7 @@ import useAccounts from '../states/accounts'
 const WalletPanel: React.FC = () => {
   const wallet = useAccounts(state => state.wallet)
   const walletType = useAccounts(state => state.walletType)
-  const randomWalletDetails = useAccounts(state => state.randomWalletDetails)
+  // const randomWalletDetails = useAccounts(state => state.randomWalletDetails)
   const setChainId = useAccounts(state => state.setChainId)
   const setWallet = useAccounts(state => state.setWallet)
   const setWalletType = useAccounts(state => state.setWalletType)
@@ -23,7 +23,7 @@ const WalletPanel: React.FC = () => {
     setWalletType('Metamask')
   }
 
-  const handleCreateRandomWallet = async (setChainId) => {
+  const handleCreateRandomWallet = async () => {
     const randomWallet = await createRandomWallet()
     setWallet(randomWallet.address)
     setRandomWalletDetails(randomWallet)
@@ -46,7 +46,7 @@ const WalletPanel: React.FC = () => {
         }}>{walletType !== 'Metamask' ? "Connect Metamask wallet" : "Account " + wallet}</Button>
         <br /><br />
         <Button variant="contained" onClick={async () => {
-          await handleCreateRandomWallet(setChainId)
+          await handleCreateRandomWallet()
         }}>{walletType !== 'Random' ? "Create Random wallet" : "Account " + wallet}</Button>
         <br /><br />
         {wallet && (

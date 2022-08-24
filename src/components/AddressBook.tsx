@@ -10,6 +10,20 @@ import contractsList from '../artifacts/contractsList.json'
 import contractsDeployed from '../artifacts/contractsAddressDeployed.json'
 import contractsDeployedHistory from '../artifacts/contractsAddressDeployedHistory.json'
 
+interface IAddressDetails {
+  name: string
+  address: string
+  network: string
+  deployer: string
+  deploymentDate: string
+  blockHash?: string
+  blockHah?: string
+  blockNumber?: number
+  tag?: string
+  // eslint-disable-next-line 
+  extra?: any
+}
+
 const AddressBook: React.FC = () => {
   const wallet = useAccounts(state => state.wallet)
   const chainId = useAccounts(state => state.chainId)
@@ -42,13 +56,13 @@ const AddressBook: React.FC = () => {
       <h2>Address Book</h2>
       {wallet !== '' && wallet !== undefined && <h4>Current wallet: {wallet}</h4>}
       {contractsDeployed !== undefined && contractsDeployed.length > 0 && <h4>Contracts deployed (from contractsAddressDeployed.json):</h4>}
-      {contractsDeployed !== undefined && contractsDeployed.length > 0 && contractsDeployed.map((contractDeployed: any, i: number) => {
+      {contractsDeployed !== undefined && contractsDeployed.length > 0 && contractsDeployed.map((contractDeployed: IAddressDetails, i: number) => {
         return (
           <div key={`contractsDeployed-${contractDeployed.name}-${i}`}>
             <h3>{contractDeployed.name}</h3>
             <p>
               {contractDeployed.address} <br />
-              {contractDeployed.network} {contractDeployed.chainId} <br />
+              {contractDeployed.network} {/* contractDeployed.chainId */} <br />
               deployer: {contractDeployed.deployer} <br />
               deployment date: {contractDeployed.deploymentDate}
             </p>
@@ -58,13 +72,13 @@ const AddressBook: React.FC = () => {
       )}
       <Button variant="contained" color="secondary" onClick={() => setAction("")}>Go back</Button>
       {contractsDeployed !== undefined && contractsDeployedHistory.length > 0 && <h4>Contracts deployed (from contractsAddressDeployedHistory.json):</h4>}
-      {contractsDeployed !== undefined && contractsDeployedHistory.length > 0 && contractsDeployedHistory.map((contractDeployed: any, i: number) => {
+      {contractsDeployed !== undefined && contractsDeployedHistory.length > 0 && contractsDeployedHistory.map((contractDeployed: IAddressDetails, i: number) => {
         return (
           <div key={`contractsDeployedHistory-${contractDeployed.name}-${i}`}>
             <h3>{contractDeployed.name}</h3>
             <p>
               {contractDeployed.address} <br />
-              {contractDeployed.network} {contractDeployed.chainId} <br />
+              {contractDeployed.network} {/* contractDeployed.chainId */} <br />
               deployer: {contractDeployed.deployer} <br />
               deployment date: {contractDeployed.deploymentDate}
             </p>

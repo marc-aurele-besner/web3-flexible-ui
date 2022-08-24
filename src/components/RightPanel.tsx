@@ -16,15 +16,16 @@ import useControls from '../states/controls'
 declare let window: any
 
 interface IRightPanel {
-    contractDetail: any[]
+  // eslint-disable-next-line
+  contractDetail: any[]
 }
 
 const StyledButton = styled(Button)`
-    margin: 10px;
+  margin: 10px;
 `
 
 const RightPanel: React.FC<IRightPanel> = ({
-    contractDetail
+  contractDetail
 }) => {
   const walletType = useAccounts(state => state.walletType)
   const randomProvider = useAccounts(state => state.randomProvider)
@@ -36,7 +37,9 @@ const RightPanel: React.FC<IRightPanel> = ({
   const callArguments = useControls(state => state.callArguments)
   const setCallArguments = useControls(state => state.setCallArguments)
 
+  // eslint-disable-next-line
   const contractDetailFunctions = contractDetail.length > 0 ? contractDetail[0].abi.length >0 && contractDetail[0].abi.filter((abiRow: any) => abiRow.type == "function") : []
+  // eslint-disable-next-line
   const specificFunctionDetail = contractDetailFunctions.length > 0 ? contractDetailFunctions.filter((functionAbi: any) => functionAbi.name === functionSelected) : []
 
   const provider = walletType == "Random" ? randomProvider : new ethers.providers.Web3Provider(window.ethereum, 'any')

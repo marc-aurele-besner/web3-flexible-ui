@@ -5,13 +5,17 @@ interface IAccountsState {
   walletType: string | null
   chainId: string | null
   accountBalance: string | null
+  // eslint-disable-next-line
   randomWalletDetails: any
+  // eslint-disable-next-line
   randomProvider: any
   setWallet: (wallet: string | null) => void
   setWalletType: (walletType: string | null) => void
   setChainId: (holderBalance: string | null) => void
   setAccountBalance: (accountBalance: string | null) => void
+  // eslint-disable-next-line
   setRandomWalletDetails: (randomWalletDetails: any) => void
+  // eslint-disable-next-line
   setRandomProvider: (randomProvider: any) => void
 }
 
@@ -26,7 +30,9 @@ const useAccounts = create<IAccountsState>(set => ({
   setWalletType: (walletType: string | null) => set(() => ({ walletType })),
   setChainId: (chainId: string | null) => set(() => ({ chainId })),
   setAccountBalance: (accountBalance: string | null) => set(() => ({ accountBalance })),
+  // eslint-disable-next-line
   setRandomWalletDetails: (randomWalletDetails: any) => set(() => ({ randomWalletDetails })),
+  // eslint-disable-next-line
   setRandomProvider: (randomProvider: any) => set(() => ({ randomProvider }))
 }))
 

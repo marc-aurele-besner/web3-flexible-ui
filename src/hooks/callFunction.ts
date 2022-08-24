@@ -3,19 +3,23 @@ import { ethers } from 'ethers'
 // eslint-disable-next-line 
 declare let window: any
 // eslint-disable-next-line 
-let provider: any
-if (window.ethereum) {
-  provider = new ethers.providers.Web3Provider(window.ethereum, "any")
-}
+// let provider: any
+// if (window.ethereum) {
+//   provider = new ethers.providers.Web3Provider(window.ethereum, "any")
+// }
 
 export const callFunction = async (
-    provider: any,
-    functionDetail: any, 
-    functionSignature: string, 
-    callArguments: any,
-    contractAddress: string, 
-    abi: any
-  ) => {
+  // eslint-disable-next-line
+  provider: any,
+  // eslint-disable-next-line
+  functionDetail: any, 
+  functionSignature: string, 
+  // eslint-disable-next-line
+  callArguments: any,
+  contractAddress: string, 
+  // eslint-disable-next-line
+  abi: any
+) => {
     console.log('functionDetail', functionDetail)
     console.log('functionName', functionDetail[0].name)
     console.log('functionSignature', functionSignature)
@@ -101,6 +105,7 @@ export const callFunction = async (
 
     if (functionDetail[0].inputs.length > 0) {
       const inputData = []
+      // eslint-disable-next-line
       functionDetail[0].inputs.map((input: any) => {
         inputData.push(input)
       })

@@ -1,13 +1,13 @@
 import React from 'react'
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import { ethers } from 'ethers';
+// import { ethers } from 'ethers';
 import { 
     StyledSelector
  } from '../components/styles'
-import { callFunction } from '../hooks/callFunction'
-import { buildSignature, buildRawSignature } from '../utils/buildFunctionSignature'
-import useAccounts from '../states/accounts'
+// import { callFunction } from '../hooks/callFunction'
+import { buildSignature } from '../utils/buildFunctionSignature' // , buildRawSignature
+// import useAccounts from '../states/accounts'
 import useControls from '../states/controls'
 import useAddressBook, { IAbisMatchAddressBook } from '../states/addressBook'
 
@@ -15,35 +15,34 @@ import useAddressBook, { IAbisMatchAddressBook } from '../states/addressBook'
 declare let window: any
 
 interface IFunctionsAndEventsList {
-    contractAddress: string
-    contractDetail: any[]
+  // eslint-disable-next-line 
+  contractDetail: any[]
 }
 
 const StyledButton = styled(Button)`
     margin: 10px;
 `
 
-const handleCallFunction = async (provider, contractAddress, abiRow, contractAbi) => {
-    const callReturn = await callFunction(
-      provider,
-      abiRow,
-      buildRawSignature(abiRow.name, abiRow.inputs), 
-      [],
-      contractAddress, 
-      contractAbi.abi
-    )
-    // if (!callReturn)
-    //     setFunctionInputNeeded(true)
-    // else
-    //     setFunctionInputNeeded(true)
-}
+// const handleCallFunction = async (provider, contractAddress, abiRow, contractAbi) => {
+//     // const callReturn = await callFunction(
+//     //   provider,
+//     //   abiRow,
+//     //   buildRawSignature(abiRow.name, abiRow.inputs), 
+//     //   [],
+//     //   contractAddress, 
+//     //   contractAbi.abi
+//     // )
+//     // if (!callReturn)
+//     //     setFunctionInputNeeded(true)
+//     // else
+//     //     setFunctionInputNeeded(true)
+// }
 
 const FunctionsAndEventsList: React.FC<IFunctionsAndEventsList> = ({
-    contractAddress,
     contractDetail
 }) => {
-  const walletType = useAccounts(state => state.walletType)
-  const randomProvider = useAccounts(state => state.randomProvider)
+  // const walletType = useAccounts(state => state.walletType)
+  // const randomProvider = useAccounts(state => state.randomProvider)
   const typeSelected = useControls(state => state.typeSelected)
   const setTypeSelected = useControls(state => state.setTypeSelected)
   const setFunctionSelected = useControls(state => state.setFunctionSelected)
@@ -51,13 +50,16 @@ const FunctionsAndEventsList: React.FC<IFunctionsAndEventsList> = ({
   const setContractAddressSelected = useControls(state => state.setContractAddressSelected)
   const abisMatchAddressBook = useAddressBook(state => state.abisMatchAddressBook)
 
+  // eslint-disable-next-line 
   const contractDetailEvents = contractDetail.length > 0 ? contractDetail[0].abi.length >0 && contractDetail[0].abi.filter((abiRow: any) => abiRow.type == "event") : []
+  // eslint-disable-next-line 
   const contractDetailFunctions = contractDetail.length > 0 ? contractDetail[0].abi.length >0 && contractDetail[0].abi.filter((abiRow: any) => abiRow.type == "function") : []
 
-  const provider = walletType == "Random" ? randomProvider : new ethers.providers.Web3Provider(window.ethereum, 'any')
+  // const provider = walletType == "Random" ? randomProvider : new ethers.providers.Web3Provider(window.ethereum, 'any')
 
   return (
     <StyledSelector>
+      {/* eslint-disable-next-line */}
       {contractDetail !== undefined && contractDetail.map((contractAbi: any, i: number) => {
         return (
           <div key={`${contractAbi.contractName}-${i}`}>
@@ -68,6 +70,7 @@ const FunctionsAndEventsList: React.FC<IFunctionsAndEventsList> = ({
             {typeSelected == "events" && (
               <>
                 {contractDetailEvents !== undefined && contractDetailEvents.length > 0 && <h2>Events:</h2>}
+                {/* eslint-disable-next-line */}
                 {contractDetailEvents !== undefined && contractDetailEvents.length > 0 && contractDetailEvents.map((abiRow: any) => {
                   return (
                     <div key={`events-${abiRow.name}`}>
@@ -84,8 +87,8 @@ const FunctionsAndEventsList: React.FC<IFunctionsAndEventsList> = ({
             {typeSelected == "function" && (
               <>
                 {contractDetailFunctions !== undefined && contractDetailFunctions.length > 0 && <h2>Function:</h2>}
-                {contractDetailFunctions !== undefined && contractDetailFunctions.length > 0 && contractDetailFunctions.filter((abiRow: any) => abiRow.inputs === undefined || abiRow.inputs.length == 0)
-                .map((abiRow: any) => {
+                {/* eslint-disable-next-line */}
+                {contractDetailFunctions !== undefined && contractDetailFunctions.length > 0 && contractDetailFunctions.filter((abiRow: any) => abiRow.inputs === undefined || abiRow.inputs.length == 0).map((abiRow: any) => {
                     return (
                       <div key={`function-${abiRow.name}-${i}`}>
                         <p>
@@ -95,14 +98,14 @@ const FunctionsAndEventsList: React.FC<IFunctionsAndEventsList> = ({
                               if (abiRow.inputs !== undefined && abiRow.inputs.length > 0) {
                                 setFunctionInputNeeded(true)
                               }
-                              await handleCallFunction(provider, contractAddress, abiRow, contractAbi)
+                              // await handleCallFunction(provider, contractAddress, abiRow, contractAbi)
                               }}>{abiRow.inputs.length > 0 ? "Build call for" : "Call"} {abiRow.name}</StyledButton>
                         </p>
                       </div>
                     )
                     })}
-                {contractDetailFunctions !== undefined && contractDetailFunctions.length > 0 && contractDetailFunctions.filter((abiRow: any) => abiRow.inputs !== undefined && abiRow.inputs.length > 0)
-                .map((abiRow: any) => {
+                {/* eslint-disable-next-line */}
+                {contractDetailFunctions !== undefined && contractDetailFunctions.length > 0 && contractDetailFunctions.filter((abiRow: any) => abiRow.inputs !== undefined && abiRow.inputs.length > 0).map((abiRow: any) => {
                 return (
                   <div key={`${abiRow.name}-${i}`}>
                     <p>
@@ -112,7 +115,7 @@ const FunctionsAndEventsList: React.FC<IFunctionsAndEventsList> = ({
                           if (abiRow.inputs !== undefined && abiRow.inputs.length > 0) {
                             setFunctionInputNeeded(true)
                           }
-                          await handleCallFunction(provider, contractAddress, abiRow, contractAbi)
+                          // await handleCallFunction(provider, contractAddress, abiRow, contractAbi)
                           }}>{abiRow.inputs.length > 0 ? "Build call for" : "Call"} {abiRow.name}</StyledButton>
                     </p>
                   </div>
