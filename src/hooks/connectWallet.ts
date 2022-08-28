@@ -41,10 +41,12 @@ export const handleAccountsChanged = async () => {
   }
   
   export const getAccounts = async () => {
-    if (window.ethereum && provider !== undefined && provider !== "") {
-      const signer = provider.getSigner();
-      const accounts = await signer.getAddress()
-      return accounts
+    if (window.ethereum) { 
+      if (window.ethereum.isMetaMask && provider !== undefined && provider !== "") {
+        const signer = provider.getSigner();
+        const accounts = await signer.getAddress()
+        return accounts
+      }
     }
   }
 

@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { styled } from '@mui/material/styles';
 import MuAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { useLocation } from 'wouter'
 
 import ContractsSelector from './ContractsSelector'
 import useControls from '../states/controls'
@@ -23,16 +24,47 @@ const StyledRightButton = styled(Button)`
   margin: 10px;
   color: white;
 `
+// eslint-disable-next-line 
+declare let window: any
 
 const AppBar: React.FC = () => {
   const [appBarButtonClicked, setAppBarButtonClicked] = useState('');
   const setAction = useControls(state => state.setAction)
   const leftBarOpen = useControls(state => state.leftBarOpen)
   const setLeftBarOpen = useControls(state => state.setLeftBarOpen)
-  const contractSelected = useControls(state => state.contractSelected)
-  const setContractSelected = useControls(state => state.setContractSelected)
+  const projectSelected = useControls(state => state.projectSelected)
+  const setProjectSelected = useControls(state => state.setProjectSelected)
   const chainId = useAccounts(state => state.chainId)
   const wallet = useAccounts(state => state.wallet)
+  const setWallet = useAccounts(state => state.setWallet)
+
+  const [, setLocation] = useLocation()
+  console.log('ethers', window.ethereum)
+  console.log('isMetaMask', window.ethereum.isMetaMask)
+
+  const requestAccounts = async () => {
+    window.ethereum
+    .request({ method: 'eth_requestAccounts' })
+    .then((accounts) => {
+      console.log('accounts', accounts)
+    })
+    .catch((error) => {
+      if (error.code === 4001) {
+        // EIP-1193 userRejectedRequest error
+        console.log('Please connect to MetaMask.');
+      } else {
+        console.error('Error-requestAccount: ' + error);
+      }
+    });
+  }
+
+  useEffect(() => {
+    if (wallet === "" || wallet == undefined) {
+      const accounts = requestAccounts()
+      if (accounts !== undefined)
+        setWallet(accounts[0])
+    }
+  }, [wallet])
 
   return (
     <>
@@ -42,21 +74,33 @@ const AppBar: React.FC = () => {
             <MenuIcon onClick={() => setLeftBarOpen(!leftBarOpen)} />
           </IconButton>
           <Typography variant="h6" color="inherit" component="div">
-            Hardhat-Awesome-UI
-
             <StyledButton 
               variant="text" 
               onClick={() => {
-                setAppBarButtonClicked('selectContracts')
-                setContractSelected('')
+                requestAccounts()
+                setAppBarButtonClicked('')
+                setAction("")
+                // window.location.href = '/'
               }}>
-                {contractSelected !== '' ? 'Contract: ' + contractSelected : 'Select a contract'}
+                Hardhat-Awesome-UI
             </StyledButton>
+            
+{/*}
+            <StyledButton 
+              variant="text" 
+              onClick={() => {
+                setAppBarButtonClicked('selectProject')
+                setProjectSelected('')
+              }}>
+                {projectSelected !== '' ? 'Project: ' + projectSelected : 'Select a project'}
+            </StyledButton> */}
             <StyledButton 
               variant="text" 
               onClick={() => {
                 setAppBarButtonClicked('network')
                 setAction("network")
+                setLocation('/network')
+                // window.location.href = '/network'
               }}>
                 {chainId === "" || chainId == undefined ? "Network" : 'chainId ' + chainId}
             </StyledButton>
@@ -65,6 +109,7 @@ const AppBar: React.FC = () => {
               onClick={() => {
                 setAppBarButtonClicked('addressBook')
                 setAction("addressBook")
+                window.location.href = '/addressBook'
               }}>
                 Address Book
             </StyledButton>
@@ -73,6 +118,7 @@ const AppBar: React.FC = () => {
               onClick={() => {
                 setAppBarButtonClicked('wallet')
                 setAction("wallet")
+                window.location.href = '/wallet'
               }}>
                 {wallet === "" || wallet == undefined ? "Connect wallet" : "Account " + wallet}
             </StyledRightButton>
