@@ -3,12 +3,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 // import Button from '@mui/material/Button';
 
-import AppBar from './components/AppBar'
-import LeftBar from './components/LeftBar'
-import { 
-  StyledView,
-  StyledActionBody
-} from './components/styles'
+import Page from './components/Page'
+import { StyledActionBody } from './components/styles'
 import NetworkPanel from './components/NetworkPanel'
 import WalletPanel from './components/WalletPanel'
 import AddressBook from './components/AddressBook'
@@ -57,10 +53,7 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={uiTheme}>
-      <AppBar />
-      <LeftBar />
-
-      <StyledView>
+      <Page>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={(
@@ -126,7 +119,7 @@ const App: React.FC = () => {
               <Button variant="contained" color="secondary" onClick={() => setAction("")}>Go back</Button>
             </StyledActionBody> : <></>}
             </> */}
-      </StyledView>
+      </Page>
     </ThemeProvider>
   )
 }
