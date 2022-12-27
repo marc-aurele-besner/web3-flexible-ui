@@ -1,40 +1,30 @@
 import React from 'react'
 // import ReactDom from 'react-dom'
-import ReactMarkdown from 'react-markdown'
-// import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
-// import Item from '@mui/material/Item';
-// import Button from '@mui/material/Button';
+import styled from 'styled-components'
+import Grid from '@mui/material/Grid'
 
 import NetworkPanel from '../components/NetworkPanel'
+import WalletPanel from '../components/WalletPanel'
+import AddressBook from '../components/AddressBook'
 
-const markdown = `
-<h2>1. Connect a wallet of create a signer</h2>
-<br />
-<h2>2. Select a network</h2>
-<br />
-<h2>3. Select and/or import contracts</h2>`
-
+const StyledGrid = styled(Grid)`
+  margin-left: 2vh;
+  margin-right: 2vh;
+`;
 
 const Home: React.FC = () => {
     return (
-        <>
-        <ReactMarkdown children={markdown} />
-        <Grid container spacing={2}>
-            <Grid xs={8}>
-                <NetworkPanel />
+        <StyledGrid container spacing={2}>
+            <Grid xs={4}>
+                <WalletPanel />
             </Grid>
             <Grid xs={4}>
                 <NetworkPanel />
             </Grid>
             <Grid xs={4}>
-                <NetworkPanel />
+                <AddressBook />
             </Grid>
-            <Grid xs={8}>
-                <NetworkPanel />
-            </Grid>
-        </Grid>
-        </>
+        </StyledGrid>
     )
 }
 

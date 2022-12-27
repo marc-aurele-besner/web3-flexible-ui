@@ -1,13 +1,5 @@
 import styled from 'styled-components'
 
-export const StyledView = styled.div`
-  display: flex;
-  font-family: 'Roboto', sans-serif;
-  height: 100vh;
-  padding-left: 20px;
-  overflow:scroll;
-  overflow-x:hidden;
-`
 export const StyledHomeSubSection = styled.h1`
   color: black;
   font-size: 1.8rem;

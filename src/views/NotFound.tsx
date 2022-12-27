@@ -10,11 +10,7 @@ const StyledNotFound = styled.div`
 `
 
 const NotFound: React.FC = () => {
-  return (
-    <>
-      <StyledNotFound>Page not found</StyledNotFound>
-    </>
-  )
+  return <StyledNotFound>Page not found</StyledNotFound>
 }
 
 export default NotFound

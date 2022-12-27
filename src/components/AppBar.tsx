@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { styled } from '@mui/material/styles';
 import MuAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -28,19 +29,16 @@ const StyledRightButton = styled(Button)`
 declare let window: any
 
 const AppBar: React.FC = () => {
+  const navigate = useNavigate()
   const [appBarButtonClicked, setAppBarButtonClicked] = useState('');
   const setAction = useControls(state => state.setAction)
   const leftBarOpen = useControls(state => state.leftBarOpen)
   const setLeftBarOpen = useControls(state => state.setLeftBarOpen)
-  // const projectSelected = useControls(state => state.projectSelected)
-  // const setProjectSelected = useControls(state => state.setProjectSelected)
   const chainId = useAccounts(state => state.chainId)
   const wallet = useAccounts(state => state.wallet)
   const setWallet = useAccounts(state => state.setWallet)
 
   const [, setLocation] = useLocation()
-  console.log('ethers', window.ethereum)
-  console.log('isMetaMask', window.ethereum.isMetaMask)
 
   const requestAccounts = async () => {
     window.ethereum
@@ -80,27 +78,17 @@ const AppBar: React.FC = () => {
                 requestAccounts()
                 setAppBarButtonClicked('')
                 setAction("")
-                // window.location.href = '/'
+                navigate('/')
               }}>
                 Hardhat-Awesome-UI
             </StyledButton>
-            
-{/*}
-            <StyledButton 
-              variant="text" 
-              onClick={() => {
-                setAppBarButtonClicked('selectProject')
-                setProjectSelected('')
-              }}>
-                {projectSelected !== '' ? 'Project: ' + projectSelected : 'Select a project'}
-            </StyledButton> */}
             <StyledButton 
               variant="text" 
               onClick={() => {
                 setAppBarButtonClicked('network')
                 setAction("network")
                 setLocation('/network')
-                // window.location.href = '/network'
+                navigate('/network')
               }}>
                 {chainId === "" || chainId == undefined ? "Network" : 'chainId ' + chainId}
             </StyledButton>
@@ -109,7 +97,7 @@ const AppBar: React.FC = () => {
               onClick={() => {
                 setAppBarButtonClicked('addressBook')
                 setAction("addressBook")
-                window.location.href = '/addressBook'
+                navigate('/addressBook')
               }}>
                 Address Book
             </StyledButton>
@@ -118,7 +106,7 @@ const AppBar: React.FC = () => {
               onClick={() => {
                 setAppBarButtonClicked('wallet')
                 setAction("wallet")
-                window.location.href = '/wallet'
+                navigate('/wallet')
               }}>
                 {wallet === "" || wallet == undefined ? "Connect wallet" : "Account " + wallet}
             </StyledRightButton>
