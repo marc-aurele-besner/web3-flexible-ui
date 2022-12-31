@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Text, Button } from '@chakra-ui/react'
 import styled from 'styled-components'
-import { useInputs } from 'web3-chakra-uikit'
+import { useInputs, useTransactions } from 'web3-chakra-uikit'
 
 import contractsList from '../artifacts/contractsList.json'
 import useAccounts from '../states/accounts'
@@ -50,6 +50,7 @@ const AddressBook: React.FC = () => {
   const setAbisMatchAddressBook = useAddressBook(state => state.setAbisMatchAddressBook)
 
   const setQueryAbi = useInputs(state => state.setQueryAbi)
+  const setSelectedContract = useTransactions((state) => state.setSelectedContract)
 
   useEffect(() => {
     if (addressBook === undefined && contractsList.contractsNames.length > 0) {
@@ -84,6 +85,7 @@ const AddressBook: React.FC = () => {
                 navigate(`/contract/${contractDeployed.name}`)
                 const contractAbi = contractsList.contractsAbis.find(contract => contract.contractName === contractDeployed.name).abi
                 setQueryAbi(contractAbi)
+                setSelectedContract(contractDeployed.name)
               }}>
                 {contractDeployed.name}
               </Button>
@@ -109,6 +111,7 @@ const AddressBook: React.FC = () => {
                 navigate(`/contract/${contractDeployed.name}`)
                 const contractAbi = contractsList.contractsAbis.find(contract => contract.contractName === contractDeployed.name).abi
                 setQueryAbi(contractAbi)
+                setSelectedContract(contractDeployed.name)
               }}>
                 {contractDeployed.name}
               </Button>

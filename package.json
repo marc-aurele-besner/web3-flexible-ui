@@ -20,7 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npx awesome-readme && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
@@ -50,7 +50,7 @@
     "react-scripts": "^5.0.1",
     "styled-components": "^5.3.6",
     "tsx-svg-icons": "^0.0.5",
-    "web3-chakra-uikit": "^0.0.5",
+    "web3-chakra-uikit": "^0.0.6",
     "wouter": "^2.9.0",
     "zustand": "^4.1.5"
   },
@@ -74,6 +74,7 @@
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.10",
     "@types/styled-components": "^5.1.26",
+    "awesome-readme": "^0.0.8",
     "babel-plugin-named-exports-order": "^0.0.2",
     "babel-plugin-preval": "^5.1.0",
     "eslint": "^8.30.0",

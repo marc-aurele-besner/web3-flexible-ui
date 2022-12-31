@@ -1,5 +1,6 @@
 import React, { lazy } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { ModalProvider } from 'web3-chakra-uikit'
 
 import Page from './components/Page'
 import NetworkPanel from './components/NetworkPanel'
@@ -8,6 +9,7 @@ import AddressBook from './components/AddressBook'
 
 const Home = lazy(() => import('./views/Home'))
 const Contract = lazy(() => import('./views/Contract'))
+const Explorer = lazy(() => import('./views/Explorer'))
 const NotFound = lazy(() => import('./views/NotFound'))
 
 // eslint-disable-next-line 
@@ -42,11 +44,29 @@ const App: React.FC = () => {
             <Route path="/deploy/:deployId" element={<Home />} /> */}
 
             <Route path="/contract/:contractName" element={<Contract />} />
+            <Route path="/contract/:contractName" element={<Contract />} />
+            <Route path="/contract/:contractName/:action" element={<Contract />} />
+            <Route path="/contract/:contractName/:action/:functionName" element={<Contract />} />
+            <Route path="/contract/:contractName/:action/:functionName/:arg1" element={<Contract />} />
+            <Route path="/contract/:contractName/:action/:functionName/:arg1/:arg2" element={<Contract />} />
+            <Route path="/contract/:contractName/:action/:functionName/:arg1/:arg2/:arg3" element={<Contract />} />
+            <Route path="/contract/:contractName/:action/:functionName/:arg1/:arg2/:arg3/:arg4" element={<Contract />} />
+            <Route path="/contract/:contractName/:action/:functionName/:arg1/:arg2/:arg3/:arg4/:arg5" element={<Contract />} />
+            <Route path="/contract/:contractName/:action/:functionName/:arg1/:arg2/:arg3/:arg4/:arg5/:arg6" element={<Contract />} />
+            <Route path="/contract/:contractName/:action/:functionName/:arg1/:arg2/:arg3/:arg4/:arg5/:arg6/:arg7" element={<Contract />} />
+            <Route path="/contract/:contractName/:action/:functionName/:arg1/:arg2/:arg3/:arg4/:arg5/:arg6/:arg7/:arg8" element={<Contract />} />
+
+            <Route path="/events/:contractName/:eventName/:eventRange" element={<Contract />} />
+            
+            <Route path="/explorer" element={<Explorer />} />
+            <Route path="/explorer/tx/:txHash" element={<Explorer />} />
+            <Route path="/explorer/address/:address" element={<Explorer />} />
 
             {/* 404 */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Page>
+        <ModalProvider />
       </BrowserRouter>
     </>
   )
