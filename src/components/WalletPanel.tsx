@@ -1,6 +1,6 @@
 
 import React from 'react'
-import Button from '@mui/material/Button';
+import { Text, Button } from '@chakra-ui/react'
 import { getConnected, handleAccountsChanged } from '../hooks/connectWallet'
 import disconnectWallet from '../hooks/disconnectWallet'
 import createRandomWallet from '../hooks/createWallet'
@@ -39,18 +39,19 @@ const WalletPanel: React.FC = () => {
 
   return (
     <>
-      <h2>Connect your wallet</h2>
+      <Text fontSize='2xl'>Connect your wallet</Text>
+        <br />
         {wallet !== '' && wallet !== undefined && <h4>Current wallet: {walletType} {wallet}</h4>}
-        <Button variant="contained" onClick={async () => {
+        <Button variant="outline" colorScheme="blue" onClick={async () => {
           await handleConnectWallet(setChainId)
         }}>{walletType !== 'Metamask' ? "Connect Metamask wallet" : "Account " + wallet}</Button>
         <br /><br />
-        <Button variant="contained" onClick={async () => {
+        <Button variant="outline" colorScheme="blue" onClick={async () => {
           await handleCreateRandomWallet()
         }}>{walletType !== 'Random' ? "Create Random wallet" : "Account " + wallet}</Button>
         <br /><br />
         {wallet && (
-          <Button variant="contained" onClick={async () => {
+          <Button variant="outline" colorScheme="blue" onClick={async () => {
             await handleDisconnectWallet()
           }}>Disconnect wallet</Button>
         )}

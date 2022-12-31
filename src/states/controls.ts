@@ -2,6 +2,7 @@ import create from 'zustand'
 
 interface IControlsState {
   viewType: string
+  projectSelected: string | null
   contractSelected: string | null
   contractAddressSelected: string | null
   typeSelected: string | null
@@ -12,6 +13,7 @@ interface IControlsState {
   // eslint-disable-next-line
   callArguments: any
   setViewType: (viewType: string) => void
+  setProjectSelected: (projectSelected: string | null) => void
   setContractSelected: (contractSelected: string | null) => void
   setContractAddressSelected: (contractAddressSelected: string | null) => void
   setTypeSelected: (holderBalance: string | null) => void
@@ -25,6 +27,7 @@ interface IControlsState {
 
 const useControls = create<IControlsState>(set => ({
   viewType: '',
+  projectSelected: null,
   contractSelected: null,
   contractAddressSelected: null,
   typeSelected: null,
@@ -34,6 +37,7 @@ const useControls = create<IControlsState>(set => ({
   leftBarOpen: false,
   callArguments: {},
   setViewType: (viewType: string) => set(() => ({ viewType })),
+  setProjectSelected: (projectSelected: string | null) => set(() => ({ projectSelected })),
   setContractSelected: (contractSelected: string | null) => set(() => ({ contractSelected })),
   setContractAddressSelected: (contractAddressSelected: string | null) => set(() => ({ contractAddressSelected })),
   setTypeSelected: (typeSelected: string | null) => set(() => ({ typeSelected })),

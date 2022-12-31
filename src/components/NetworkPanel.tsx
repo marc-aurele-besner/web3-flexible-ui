@@ -1,11 +1,11 @@
 import React from 'react'
-import { styled } from '@mui/material/styles';
-import Button from '@mui/material/Button';
+import { Text, Button } from '@chakra-ui/react'
+import styled from 'styled-components'
+import { ethers } from 'ethers';
+
 import { switchChain, handleAccountsChanged } from '../hooks/connectWallet'
 import useAccounts from '../states/accounts'
-
 import chains, { chainsGroup } from '../constants/chains'
-import { ethers } from 'ethers';
 
 const StyledButton = styled(Button)`
     margin: 10px;
@@ -44,16 +44,16 @@ const NetworkPanel: React.FC = () => {
 
     return (
         <>
-            <h2>Change network</h2>
-            {chainId !== '' && chainId !== undefined && <h4>Current chainId: {chainId}</h4>}
+            <Text fontSize='2xl'>Change network</Text>
+            {chainId !== '' && chainId !== undefined && <Text as='b'>Current chainId: {chainId}</Text>}
             {chainsGroup.map((group, index) => (
                 <div key={index}>
                 <h3>{group.name}</h3>
                     {chains.filter((chain) => chain.chainGroup === group.name).map(chain => (
                         <StyledButton 
-                            variant="contained" 
+                            variant={parseInt(chainId, 10) === chain.chainId ? "solid" : "outline"}
+                            colorScheme="blue"
                             key={chain.chainId}
-                            color={parseInt(chainId, 10) === chain.chainId ? "success" : "primary"}
                             onClick={async () => {
                             await handleSwitchChain(walletType, chain.chainId, setChainId, setWallet, setRandomProvider)
                             }}>
