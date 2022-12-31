@@ -1,31 +1,34 @@
 import React from 'react'
-import { styled } from '@mui/material/styles';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import CallIcon from '@mui/icons-material/Call';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
-import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-import Drawer from '@mui/material/Drawer';
+import { useNavigate } from 'react-router-dom'
+import { Button } from '@chakra-ui/react'
+import styled from 'styled-components'
+// import List from '@mui/material/List';
+// import ListItem from '@mui/material/ListItem';
+// import ListItemText from '@mui/material/ListItemText';
+// import ListItemAvatar from '@mui/material/ListItemAvatar';
+// import Avatar from '@mui/material/Avatar';
+// import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+// import CallIcon from '@mui/icons-material/Call';
+// import BeachAccessIcon from '@mui/icons-material/BeachAccess';
+// import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+// import Drawer from '@mui/material/Drawer';
 
 import useControls from '../states/controls'
 
-const StyledListItem = styled(ListItem)`
-    cursor: pointer;
-`
+// const StyledListItem = styled(ListItem)`
+//     cursor: pointer;
+// `
 
 const LeftBar: React.FC = () => {
-    const leftBarOpen = useControls(state => state.leftBarOpen)
-    const setAction = useControls(state => state.setAction)
-    const setLeftBarOpen = useControls(state => state.setLeftBarOpen)
-    const setTypeSelected = useControls(state => state.setTypeSelected)
+    // const navigate = useNavigate()
+    // const leftBarOpen = useControls(state => state.leftBarOpen)
+    // const setAction = useControls(state => state.setAction)
+    // const setLeftBarOpen = useControls(state => state.setLeftBarOpen)
+    // const setTypeSelected = useControls(state => state.setTypeSelected)
 
   return (
     <>
-        <Drawer
+        {/* <Drawer
             anchor="left"
             open={leftBarOpen}
             onClose={() => setLeftBarOpen(false)}
@@ -37,6 +40,7 @@ const LeftBar: React.FC = () => {
             <StyledListItem onClick={() => {
                 setAction("deploy")
                 setLeftBarOpen(false)
+                navigate("/deploy")
                 }}>
                 <ListItemAvatar>
                 <Avatar>
@@ -46,9 +50,10 @@ const LeftBar: React.FC = () => {
                 <ListItemText primary="Deploy" secondary="Deploy contracts" />
             </StyledListItem>
             <StyledListItem onClick={() => {
-                setTypeSelected("function")
+                setTypeSelected("functions")
                 setAction("")
                 setLeftBarOpen(false)
+                navigate("/functions")
                 }}>
                 <ListItemAvatar>
                 <Avatar>
@@ -60,6 +65,7 @@ const LeftBar: React.FC = () => {
             <StyledListItem onClick={() => {
                 setAction("test")
                 setLeftBarOpen(false)
+                navigate("/test")
                 }}>
                 <ListItemAvatar>
                 <Avatar>
@@ -71,6 +77,7 @@ const LeftBar: React.FC = () => {
             <StyledListItem onClick={() => {
                 setAction("routine")
                 setLeftBarOpen(false)
+                navigate("/routine")
                 }}>
                 <ListItemAvatar>
                 <Avatar>
@@ -80,7 +87,7 @@ const LeftBar: React.FC = () => {
                 <ListItemText primary="Routine" secondary="Build and use routines" />
             </StyledListItem>
         </List>
-        </Drawer>
+        </Drawer> */}
     </>
   )
 }

@@ -1,13 +1,14 @@
 
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { styled } from '@mui/material/styles';
-import MuAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import { Grid, GridItem, Text, Button } from '@chakra-ui/react'
+import styled from 'styled-components'
+// import MuAppBar from '@mui/material/AppBar';
+// import Toolbar from '@mui/material/Toolbar';
+// import IconButton from '@mui/material/IconButton';
+// import MenuIcon from '@mui/icons-material/Menu';
+// import Typography from '@mui/material/Typography';
+// import Button from '@mui/material/Button';
 import { useLocation } from 'wouter'
 
 import ContractsSelector from './ContractsSelector'
@@ -65,56 +66,55 @@ const AppBar: React.FC = () => {
   }, [wallet])
 
   return (
-    <>
-      <MuAppBar position="static">
-        <Toolbar variant="dense">
-          <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-            <MenuIcon onClick={() => setLeftBarOpen(!leftBarOpen)} />
-          </IconButton>
-          <Typography variant="h6" color="inherit" component="div">
-            <StyledButton 
-              variant="text" 
-              onClick={() => {
-                requestAccounts()
-                setAppBarButtonClicked('')
-                setAction("")
-                navigate('/')
-              }}>
-                Hardhat-Awesome-UI
-            </StyledButton>
-            <StyledButton 
-              variant="text" 
-              onClick={() => {
-                setAppBarButtonClicked('network')
-                setAction("network")
-                setLocation('/network')
-                navigate('/network')
-              }}>
-                {chainId === "" || chainId == undefined ? "Network" : 'chainId ' + chainId}
-            </StyledButton>
-            <StyledButton 
-              variant="text" 
-              onClick={() => {
-                setAppBarButtonClicked('addressBook')
-                setAction("addressBook")
-                navigate('/addressBook')
-              }}>
-                Address Book
-            </StyledButton>
-            <StyledRightButton 
-              variant="text" 
-              onClick={() => {
-                setAppBarButtonClicked('wallet')
-                setAction("wallet")
-                navigate('/wallet')
-              }}>
-                {wallet === "" || wallet == undefined ? "Connect wallet" : "Account " + wallet}
-            </StyledRightButton>
-          </Typography>
-        </Toolbar>
-      </MuAppBar>
-      {appBarButtonClicked === 'selectContracts' && <ContractsSelector />}
-    </>
+    <Grid templateColumns='repeat(4, 1fr)' gap={0}>
+      <GridItem h='5vh' bg='blue.500'>
+        <StyledButton 
+          variant="text" 
+          onClick={() => {
+            requestAccounts()
+            setAppBarButtonClicked('')
+            setAction("")
+            navigate('/')
+          }}>
+            Hardhat-Awesome-UI
+        </StyledButton>
+      </GridItem>
+      <GridItem h='5vh' bg='blue.500'>
+        <StyledButton 
+          variant="text" 
+          onClick={() => {
+            setAppBarButtonClicked('network')
+            setAction("network")
+            setLocation('/network')
+            navigate('/network')
+          }}>
+            {chainId === "" || chainId == undefined ? "Network" : 'chainId ' + chainId}
+        </StyledButton>
+      </GridItem>
+      <GridItem h='5vh' bg='blue.500'>
+        <StyledButton 
+          variant="text" 
+          onClick={() => {
+            setAppBarButtonClicked('addressBook')
+            setAction("addressBook")
+            navigate('/addressBook')
+          }}>
+            Address Book
+        </StyledButton>
+      </GridItem>
+      <GridItem h='5vh' bg='blue.500'>
+        <StyledRightButton 
+          variant="text" 
+          onClick={() => {
+            setAppBarButtonClicked('wallet')
+            setAction("wallet")
+            navigate('/wallet')
+          }}>
+            {wallet === "" || wallet == undefined ? "Connect wallet" : "Account " + wallet}
+        </StyledRightButton>
+        {appBarButtonClicked === 'selectContracts' && <ContractsSelector />}
+      </GridItem>
+    </Grid>
   )
 }
 

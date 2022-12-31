@@ -1,7 +1,5 @@
 import React, { lazy } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
-// import Button from '@mui/material/Button';
 
 import Page from './components/Page'
 import { StyledActionBody } from './components/styles'
@@ -38,7 +36,6 @@ interface IContractsAbis {
   abi: IAbi[]
 }
 
-const uiTheme = createTheme();
 
 const App: React.FC = () => {
   // const viewType = useControls(state => state.viewType)
@@ -51,7 +48,7 @@ const App: React.FC = () => {
   // const contractAddress = ''
 
   return (
-    <ThemeProvider theme={uiTheme}>
+    <>
       <BrowserRouter>
         <Page>
           <Routes>
@@ -115,7 +112,7 @@ const App: React.FC = () => {
             <Button variant="contained" color="secondary" onClick={() => setAction("")}>Go back</Button>
           </StyledActionBody> : <></>}
           </> */}
-    </ThemeProvider>
+    </>
   )
 }
 

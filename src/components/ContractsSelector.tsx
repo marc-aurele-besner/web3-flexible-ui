@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react'
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
+import { Button } from '@chakra-ui/react'
+import styled from 'styled-components'
+// import { styled } from '@mui/material/styles';
+// import Paper from '@mui/material/Paper';
+// import MenuList from '@mui/material/MenuList';
+// import MenuItem from '@mui/material/MenuItem';
 import { 
     StyledContractName
  } from '../components/styles'
@@ -11,10 +13,10 @@ import useControls from '../states/controls'
 
 import contractsList from '../artifacts/contractsList.json'
 
-const StyledPaper = styled(Paper)`
-    margin-left: 200px;
-    width: 30vw;
-`
+// const StyledPaper = styled(Paper)`
+//     margin-left: 200px;
+//     width: 30vw;
+// `
 
 const ContractsSelector: React.FC = () => {
     const abis = useAbis(state => state.abis)
@@ -31,8 +33,8 @@ const ContractsSelector: React.FC = () => {
     if (contractSelected === '') {
         if (abis !== null)
             return (
-                <StyledPaper sx={{ width: 320, maxWidth: '100%' }}>
-                    <MenuList>
+                <>
+                    {/* <MenuList>
                         {contractSelected == '' ? <>
                             <h2>Select a contract</h2>
                             {abis.contractsNames.map((contractName: string) => {
@@ -44,8 +46,8 @@ const ContractsSelector: React.FC = () => {
                             </> : <>
                                 <h2>{contractSelected} <small>Change contract</small></h2>
                             </>}
-                    </MenuList>
-                </StyledPaper>
+                    </MenuList> */}
+                </>
             )
     }
 }

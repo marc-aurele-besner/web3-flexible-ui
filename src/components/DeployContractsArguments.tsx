@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { styled } from '@mui/material/styles';
-import Button from '@mui/material/Button';
+import { Button } from '@chakra-ui/react'
+import styled from 'styled-components'
 import { 
     StyledBody
  } from '../components/styles'
