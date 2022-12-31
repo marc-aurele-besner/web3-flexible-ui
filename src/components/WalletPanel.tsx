@@ -40,6 +40,7 @@ const WalletPanel: React.FC = () => {
   return (
     <>
       <Text fontSize='2xl'>Connect your wallet</Text>
+        <br />
         {wallet !== '' && wallet !== undefined && <h4>Current wallet: {walletType} {wallet}</h4>}
         <Button variant="outline" colorScheme="blue" onClick={async () => {
           await handleConnectWallet(setChainId)

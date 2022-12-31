@@ -1,29 +1,18 @@
 import React from 'react'
-// import ReactDom from 'react-dom'
-import { Grid, GridItem } from '@chakra-ui/react'
 import styled from 'styled-components'
+import { ContractInterface, useInputs } from 'web3-chakra-uikit'
 
-import NetworkPanel from '../components/NetworkPanel'
-import WalletPanel from '../components/WalletPanel'
-import AddressBook from '../components/AddressBook'
-
-const StyledGrid = styled(Grid)`
-  margin-left: 2vh;
-  margin-right: 2vh;
+const StyledContractInterface = styled(ContractInterface)`
+  margin-left: 1rem;
+  margin-right: 1rem;
 `;
 
 const Home: React.FC = () => {
-    return <StyledGrid templateColumns='repeat(3, 1fr)' gap={4}>
-        <GridItem>
-            <WalletPanel />
-        </GridItem>
-        <GridItem>
-            <NetworkPanel />
-        </GridItem>
-        <GridItem>
-            <AddressBook />
-        </GridItem>
-    </StyledGrid>
+    const queryAbi = useInputs(state => state.queryAbi)
+
+    return <StyledContractInterface
+        contractAbi={queryAbi}
+    />
 }
 
 export default Home

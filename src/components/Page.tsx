@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Box } from '@chakra-ui/react'
 
 import AppBar from './AppBar'
-import LeftBar from './LeftBar'
 
 type PageProps = {
   children: JSX.Element
@@ -19,7 +18,6 @@ const Page: React.FC<PageProps> = ({ children }) => {
   return (
     <>
       <AppBar />
-      <LeftBar />
       <StyledBox>
         {children}
       </StyledBox>

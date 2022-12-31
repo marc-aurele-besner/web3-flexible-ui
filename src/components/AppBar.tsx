@@ -1,17 +1,10 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Grid, GridItem, Text, Button } from '@chakra-ui/react'
+import { Grid, GridItem, Button } from '@chakra-ui/react'
 import styled from 'styled-components'
-// import MuAppBar from '@mui/material/AppBar';
-// import Toolbar from '@mui/material/Toolbar';
-// import IconButton from '@mui/material/IconButton';
-// import MenuIcon from '@mui/icons-material/Menu';
-// import Typography from '@mui/material/Typography';
-// import Button from '@mui/material/Button';
 import { useLocation } from 'wouter'
 
-import ContractsSelector from './ContractsSelector'
 import useControls from '../states/controls'
 import useAccounts from '../states/accounts'
 
@@ -31,10 +24,7 @@ declare let window: any
 
 const AppBar: React.FC = () => {
   const navigate = useNavigate()
-  const [appBarButtonClicked, setAppBarButtonClicked] = useState('');
   const setAction = useControls(state => state.setAction)
-  const leftBarOpen = useControls(state => state.leftBarOpen)
-  const setLeftBarOpen = useControls(state => state.setLeftBarOpen)
   const chainId = useAccounts(state => state.chainId)
   const wallet = useAccounts(state => state.wallet)
   const setWallet = useAccounts(state => state.setWallet)
@@ -67,23 +57,21 @@ const AppBar: React.FC = () => {
 
   return (
     <Grid templateColumns='repeat(4, 1fr)' gap={0}>
-      <GridItem h='5vh' bg='blue.500'>
+      <GridItem h='3rem' bg='blue.500'>
         <StyledButton 
           variant="text" 
           onClick={() => {
             requestAccounts()
-            setAppBarButtonClicked('')
             setAction("")
             navigate('/')
           }}>
             Hardhat-Awesome-UI
         </StyledButton>
       </GridItem>
-      <GridItem h='5vh' bg='blue.500'>
+      <GridItem h='3rem' bg='blue.500'>
         <StyledButton 
           variant="text" 
           onClick={() => {
-            setAppBarButtonClicked('network')
             setAction("network")
             setLocation('/network')
             navigate('/network')
@@ -91,28 +79,25 @@ const AppBar: React.FC = () => {
             {chainId === "" || chainId == undefined ? "Network" : 'chainId ' + chainId}
         </StyledButton>
       </GridItem>
-      <GridItem h='5vh' bg='blue.500'>
+      <GridItem h='3rem' bg='blue.500'>
         <StyledButton 
           variant="text" 
           onClick={() => {
-            setAppBarButtonClicked('addressBook')
             setAction("addressBook")
             navigate('/addressBook')
           }}>
             Address Book
         </StyledButton>
       </GridItem>
-      <GridItem h='5vh' bg='blue.500'>
+      <GridItem h='3rem' bg='blue.500'>
         <StyledRightButton 
           variant="text" 
           onClick={() => {
-            setAppBarButtonClicked('wallet')
             setAction("wallet")
             navigate('/wallet')
           }}>
             {wallet === "" || wallet == undefined ? "Connect wallet" : "Account " + wallet}
         </StyledRightButton>
-        {appBarButtonClicked === 'selectContracts' && <ContractsSelector />}
       </GridItem>
     </Grid>
   )

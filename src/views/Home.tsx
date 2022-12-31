@@ -1,5 +1,4 @@
 import React from 'react'
-// import ReactDom from 'react-dom'
 import { Grid, GridItem } from '@chakra-ui/react'
 import styled from 'styled-components'
 
