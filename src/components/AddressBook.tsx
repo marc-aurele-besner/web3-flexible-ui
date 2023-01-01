@@ -83,7 +83,7 @@ const AddressBook: React.FC = () => {
               onClick={() => {
                 setAction("")
                 navigate(`/contract/${contractDeployed.name}`)
-                const contractAbi = contractsList.contractsAbis.find(contract => contract.contractName === contractDeployed.name).abi
+                const contractAbi = contractsList.contracts.find(contract => contract.contractName === contractDeployed.name).abi
                 setQueryAbi(contractAbi)
                 setSelectedContract(contractDeployed.name)
               }}>
@@ -109,7 +109,7 @@ const AddressBook: React.FC = () => {
               onClick={() => {
                 setAction("")
                 navigate(`/contract/${contractDeployed.name}`)
-                const contractAbi = contractsList.contractsAbis.find(contract => contract.contractName === contractDeployed.name).abi
+                const contractAbi = contractsList.contracts.find(contract => contract.contractName === contractDeployed.name).abi
                 setQueryAbi(contractAbi)
                 setSelectedContract(contractDeployed.name)
               }}>
