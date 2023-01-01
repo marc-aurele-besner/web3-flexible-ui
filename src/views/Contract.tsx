@@ -45,7 +45,7 @@ const Contract: React.FC = () => {
   if (queryAbi === null) return null
 
   const handleContract = async () => {
-    const contract = contractsList.contractsAbis.find(contract => contract.contractName === contractName)
+    const contract = contractsList.contracts.find(contract => contract.contractName === contractName)
     const contractAddressDeployed = contractsAddressDeployed.find(contract => contract.name === contractName && contract.chainId === chainId) ? contractsAddressDeployed.find(contract => contract.name === contractName && contract.chainId === chainId).address : undefined
     if (contract !== undefined) {
       if (contract !== undefined && contract.abi !== undefined && contractAddressDeployed !== undefined) {
