@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react' // , { useEffect }
 import { useNavigate } from 'react-router-dom'
 import { Text, Button } from '@chakra-ui/react'
 import styled from 'styled-components'
@@ -7,8 +7,8 @@ import { useInputs, useTransactions } from 'web3-chakra-uikit'
 import contractsList from '../artifacts/contractsList.json'
 import useAccounts from '../states/accounts'
 import useControls from '../states/controls'
-import useAddressBook from '../states/addressBook'
-import chains from '../constants/chains'
+// import useAddressBook from '../states/addressBook'
+// import chains from '../constants/chains'
 import contractsDeployed from '../artifacts/contractsAddressDeployed.json'
 import contractsDeployedHistory from '../artifacts/contractsAddressDeployedHistory.json'
 
@@ -41,33 +41,33 @@ interface IAddressDetails {
 const AddressBook: React.FC = () => {
   const navigate = useNavigate()
   const wallet = useAccounts(state => state.wallet)
-  const chainId = useAccounts(state => state.chainId)
+  // const chainId = useAccounts(state => state.chainId)
   const setAction = useControls(state => state.setAction)
 
-  const addressBook = useAddressBook(state => state.addressBook)
-  const abisMatchAddressBook = useAddressBook(state => state.abisMatchAddressBook)
-  const setAddressBook = useAddressBook(state => state.setAddressBook)
-  const setAbisMatchAddressBook = useAddressBook(state => state.setAbisMatchAddressBook)
+  // const addressBook = useAddressBook(state => state.addressBook)
+  // const abisMatchAddressBook = useAddressBook(state => state.abisMatchAddressBook)
+  // const setAddressBook = useAddressBook(state => state.setAddressBook)
+  // const setAbisMatchAddressBook = useAddressBook(state => state.setAbisMatchAddressBook)
 
   const setQueryAbi = useInputs(state => state.setQueryAbi)
   const setSelectedContract = useTransactions((state) => state.setSelectedContract)
 
-  useEffect(() => {
-    if (addressBook === undefined && contractsList.contractsNames.length > 0) {
-      setAddressBook(contractsDeployed)
-      const newAbisMatchAddressBook = []
-      contractsList.contractsNames.map(contractName => {
-        contractsDeployed.filter(contract => contract.name === contractName).map(contract => {
-          newAbisMatchAddressBook.push({
-            contractName: contract.name,
-            chainId: chains.find((chain) => chain.hardhatChainName == contract.network).chainId,
-            contractAddress: contract.address
-          })
-        })
-      })
-      setAbisMatchAddressBook(newAbisMatchAddressBook)
-    }
-  }, [chainId, addressBook, contractsList, contractsDeployed, abisMatchAddressBook, setAbisMatchAddressBook])
+  // useEffect(() => {
+  //   if (addressBook === undefined && contractsList.contractsNames.length > 0) {
+  //     setAddressBook(contractsDeployed)
+  //     const newAbisMatchAddressBook = []
+  //     contractsList.contractsNames.map(contractName => {
+  //       contractsDeployed.filter(contract => contract.name === contractName).map(contract => {
+  //         newAbisMatchAddressBook.push({
+  //           contractName: contract.name,
+  //           chainId: chains.find((chain) => chain.hardhatChainName == contract.network).chainId,
+  //           contractAddress: contract.address
+  //         })
+  //       })
+  //     })
+  //     setAbisMatchAddressBook(newAbisMatchAddressBook)
+  //   }
+  // }, [chainId, addressBook, contractsList, contractsDeployed, abisMatchAddressBook, setAbisMatchAddressBook])
 
   return (
     <StyledAddressBook>
